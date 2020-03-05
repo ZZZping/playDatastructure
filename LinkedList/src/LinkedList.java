@@ -5,7 +5,7 @@ public class LinkedList<E> {
     private class Node{
         public E e;
         public Node next;
-        //将e和next设置为public，在linkedlist中可以随意访问这两个变量
+        //将e和next设置为public，在linked list中可以随意访问这两个变量
         public Node(E e, Node next){
             this.e = e;
             this.next = next;
