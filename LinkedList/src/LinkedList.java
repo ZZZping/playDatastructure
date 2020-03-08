@@ -160,6 +160,41 @@ public class LinkedList<E> {
         return false;
     }
 
+    /**
+     *从链表中删除index(0-based)位置元素，返回删除元素
+     */
+    public E remove(int index){
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("remove failed. Illegal index.");
+        }
+        Node prev = dummyHead;
+        //找出删除位置的链表节点
+        for (int i = 0; i < index; i ++) {
+            prev = prev.next;
+        }
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        retNode.next = null;
+        size --;
+        return retNode.e;
+    }
+
+    /**
+     * 从链表中删除第一个元素
+     * @return
+     */
+    public E removeFirst(){
+        return remove(0);
+    }
+
+    /**
+     * 删除链表中最后一个元素
+     * @return
+     */
+    public E removeLast(){
+        return remove(size - 1);
+    }
+
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
