@@ -19,15 +19,18 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        int opCount = 100000;
+        int opCount = 10000;
 
         ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
         double time1 = testQueue(arrayQueue, opCount);
-        System.out.printf("ArrayQueue, time: " + time1 + " s");
+        System.out.println("ArrayQueue, time: " + time1 + " s");
 
         LoopQueue<Integer> loopQueue = new LoopQueue<>();
         double time2 = testQueue(loopQueue, opCount);
         System.out.println("LoopQueue, time: " + time2 + " s");
 
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+        double time3 = testQueue(linkedListQueue, opCount);
+        System.out.println("LinklistQueue, time: " + time3 + "s");
     }
 }
