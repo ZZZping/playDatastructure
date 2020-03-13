@@ -9,10 +9,11 @@ public class Solution {
         if (head == null) {
             return null;
         }
-        for (ListNode prev = head; prev != null; prev = prev.next) {
+        ListNode prev = head;
+        while (prev.next != null) {
             if (prev.next.val == val) {
                 ListNode delNode = prev.next;
-                prev.next = delNode;
+                prev.next = delNode.next;
                 delNode.next = null;
             } else {
                 prev = prev.next;
