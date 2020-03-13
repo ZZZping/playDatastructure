@@ -13,6 +13,7 @@ public class Sum {
             return 0;
         }
         return arr[l] +sum(arr, l + 1);
+        //arr[0] + sum(arr, 1) --> arr[0] + arr[1] + sum(arr, 2) --> ...
     }
 
     public static void main(String[] args) {
