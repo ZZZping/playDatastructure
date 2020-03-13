@@ -35,5 +35,7 @@ public class Main {
         LinkedListStack linkedListStack = new LinkedListStack();
         double time2 = testStack(linkedListStack, opCount);
         System.out.println("LinkedListStack, time: " + time2 + "s");
+
+        
     }
 }
