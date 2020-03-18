@@ -37,5 +37,49 @@ public class BST<E extends Comparable<E>> {
         return size == 0;
     }
 
+    /**
+     * 像节点中添加元素e
+     * @param e 插入的元素
+     */
+    public void add(E e){
+        if (root == null) {
+            root = new Node(e);
+            size ++;
+        } else {
+            add(root, e);
+        }
+    }
+
+    /**
+     * 递归函数，向节点node中传入元素e
+     * @param node 目标节点，在插入时，BST的root节点在不断变化
+     * @param e 传入的元素
+     */
+    private void add(Node node, E e) {
+
+        //递归终止条件
+        if (e.equals(node.e)) {
+            return;
+        } else if (e.compareTo(node.e) < 0 && node.left == null) {
+            //不能使用comparable
+            //插入元素比root小，且左孩子值为空，创建新的左孩子
+            node.left = new Node(e);
+            size ++;
+            return;
+        } else if (e.compareTo(node.e) > 0 && node.right == null) {
+            //插入的值比root大，且有孩子为空，创建新的右孩子
+            node.right = new Node(e);
+            size ++;
+            return;
+        }
+        if (e.compareTo(node.e) < 0) {
+            //插入的元素比root节点小，插入到左子树
+            add(node.left, e);
+        } else {
+            //插入的元素比root元素大，插入到右子树
+            add(node.right, e);
+        }
+    }
+
 
 }
