@@ -59,7 +59,7 @@ public class BST<E extends Comparable<E>> {
      * @param node 目标节点，在插入时，BST的root节点在不断变化
      * @param e 传入的元素
      */
-    private Node add(@NotNull Node node, E e) {
+    private Node add(Node node, E e) {
 
         //递归终止条件
 //        if (e.equals(node.e)) {
@@ -120,5 +120,53 @@ public class BST<E extends Comparable<E>> {
             return contains(node.right, e);
         }
 
+    }
+
+    /**
+     * 前序遍历二叉树
+     */
+    public void preOrder(){
+        preOrder(root);
+    }
+
+    /**
+     * 前序遍历以node为根的二分搜索树
+     * @param node node为根节点
+     */
+    private void preOrder(Node node){
+//        if (node == null) {
+//            return;
+//        }
+        if (node != null) {
+            System.out.println(node.e);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder res = new StringBuilder();
+        generateBSTString(root, 0, res);
+        return res.toString();
+    }
+
+    private void generateBSTString(Node node, int depth, StringBuilder res){
+        if (node == null) {
+            res.append(generateDepthString(depth) + "null\n");
+            return;
+        }
+        res.append(generateDepthString(depth) + node.e + "\n");
+        generateBSTString(node.left, depth + 1 , res);
+        generateBSTString(node.right, depth + 1, res);
+    }
+
+    private String generateDepthString(int depth){
+        StringBuilder res = new StringBuilder();
+        for (int i =0; i < depth; i ++) {
+            res.append("--");
+        }
+        return res.toString();
     }
 }
