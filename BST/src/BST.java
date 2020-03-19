@@ -89,4 +89,36 @@ public class BST<E extends Comparable<E>> {
         }
         return node;
     }
+
+    /**
+     * 查看二分搜索树中是否包含元素e
+     * @param e 索索地目的元素
+     * @return return调用地递归函数
+     */
+    public boolean contains(E e){
+        return contains(root, e);
+    }
+
+    /**
+     * 递归函数
+     * @param node 从node结点开始
+     * @param e 搜索元素e
+     * @return 返回bool值
+     */
+    private boolean contains(Node node, E e){
+
+        if (node == null) {
+            return false;
+        }
+        if (e.compareTo(node.e) == 0) {
+            return true;
+        } else if (e.compareTo(node.e) < 0) {
+            //e比node节点元素小，将e与node左子树节点比较
+            return contains(node.left, e);
+        } else {
+            //e比node节点元素大，将e与node右子树节点比较
+            return contains(node.right, e);
+        }
+
+    }
 }
