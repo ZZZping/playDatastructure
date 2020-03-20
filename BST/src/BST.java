@@ -164,6 +164,25 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * 后序遍历
+     */
+    public void postOrder(){
+        postOrder(root);
+    }
+
+    /**
+     * 后序遍历，先打印右孩子节点元素，再打印左孩子节点元素，最后打印root节点元素
+     * @param node root节点
+     */
+    private void postOrder(Node node){
+        if (node != null) {
+            postOrder(node.right);
+            postOrder(node.left);
+            System.out.println(node.e);
+        }
+    }
+
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
