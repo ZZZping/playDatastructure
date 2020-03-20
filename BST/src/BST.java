@@ -130,7 +130,7 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * 前序遍历以node为根的二分搜索树
+     * 前序遍历以node为根的二分搜索树，先打印root节点元素，再打印左孩子节点元素，最后打印右孩子节点元素
      * @param node node为根节点
      */
     private void preOrder(Node node){
@@ -143,6 +143,25 @@ public class BST<E extends Comparable<E>> {
             preOrder(node.right);
         }
 
+    }
+
+    /**
+     * 中序遍历
+     */
+    public void inOrder(){
+        inOrder(root);
+    }
+
+    /**
+     * 先打印左孩子元素，再打印root节点元素，最后打印右孩子节点元素
+     * @param node root节点
+     */
+    private void inOrder(Node node){
+        if (node != null) {
+            inOrder(node.left);
+            System.out.println(node.e);
+            inOrder(node.right);
+        }
     }
 
     @Override
