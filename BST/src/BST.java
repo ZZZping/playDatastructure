@@ -166,6 +166,7 @@ public class BST<E extends Comparable<E>> {
 
     /**
      * 后序遍历
+     * 内存释放方面
      */
     public void postOrder(){
         postOrder(root);
