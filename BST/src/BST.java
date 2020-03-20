@@ -1,5 +1,7 @@
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Stack;
+
 public class BST<E extends Comparable<E>> {
 
     private class Node{
@@ -143,6 +145,26 @@ public class BST<E extends Comparable<E>> {
             preOrder(node.right);
         }
 
+    }
+
+    /**
+     * 使用stack进行BST的非递归实现
+     */
+    public void preOrderNR(){
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (stack.isEmpty()) {
+            //cur节点是当前要访问的节点
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
+            }
+        }
     }
 
     /**
