@@ -272,6 +272,61 @@ public class BST<E extends Comparable<E>> {
         return maxnum(node);
     }
 
+    /**
+     * 删除BST中最小值
+     * @return 返回最小值
+     */
+    public E removeMin(){
+        E ret = mininum();
+        //将新的root节点赋值给root节点
+        root = removeMin(root);
+        return ret;
+    }
+
+    /**
+     * 删除掉以node为根的BST中最小节点，返回删除节点后新的BST中的root节点
+     * @param node node节点
+     * @return 返回新的BST的root节点
+     */
+    private Node removeMin(Node node){
+        if (node.left == null) {
+            Node rightNode = node.right;
+            //删除节点
+            node.right = null;
+            //控制BST容量
+            size --;
+            return rightNode;
+        }
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    /**
+     * 删除BST中最大元素
+     * @return 返回新的root节点
+     */
+    public E removeMax(){
+        E ret = maxnum();
+        root = removeMax(root);
+        return ret;
+    }
+
+    /**
+     * 返回以node为根节点的BST的最大值
+     * @param node 以node为根节点
+     * @return 返回新的根节点
+     */
+    private Node removeMax(Node node){
+        if (node.left == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            size --;
+            return leftNode;
+        }
+        node.right = removeMin(node);
+        return node;
+    }
+
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
