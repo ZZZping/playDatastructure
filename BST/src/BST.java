@@ -226,6 +226,52 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * 返回BST中的最小元素
+     * @return 返回最小元素
+     */
+    public E mininum(){
+        if (size == 0) {
+            throw new IllegalArgumentException("BST is empty!");
+        }
+        return mininum(root).e;
+    }
+
+    /**
+     * mininum递归函数
+     * @param node root节点
+     * @return return调用递归函数
+     */
+    private Node mininum(Node node){
+        if (node.left == null) {
+            return node;
+        }
+        return mininum(node.left);
+    }
+
+    /**
+     * 返回BST中最大元素
+     * @return 返回最大元素
+     */
+    public E maxnum(){
+        if (size == 0) {
+            throw new IllegalArgumentException("BST is empty!");
+        }
+        return maxnum(root).e;
+    }
+
+    /**
+     * 递归函数
+     * @param node root节点
+     * @return return调用递归函数
+     */
+    private Node maxnum(Node node){
+        if (node.right == null) {
+            return node;
+        }
+        return maxnum(node);
+    }
+
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
