@@ -1,5 +1,7 @@
 import org.jetbrains.annotations.NotNull;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BST<E extends Comparable<E>> {
@@ -153,7 +155,7 @@ public class BST<E extends Comparable<E>> {
     public void preOrderNR(){
         Stack<Node> stack = new Stack<>();
         stack.push(root);
-        while (stack.isEmpty()) {
+        while (!stack.isEmpty()) {
             //cur节点是当前要访问的节点
             Node cur = stack.pop();
             System.out.println(cur.e);
@@ -203,6 +205,24 @@ public class BST<E extends Comparable<E>> {
             postOrder(node.right);
             postOrder(node.left);
             System.out.println(node.e);
+        }
+    }
+
+    /**
+     * 层序遍历
+     */
+    public void levelOrder(){
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node cur = queue.remove();
+            System.out.println(cur.e);
+            if (cur.left != null) {
+                queue.add(cur.left);
+            }
+            if (cur.right != null) {
+                queue.add(cur.right);
+            }
         }
     }
 
