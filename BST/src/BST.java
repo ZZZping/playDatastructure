@@ -327,6 +327,67 @@ public class BST<E extends Comparable<E>> {
         return node;
     }
 
+    /**
+     * 删除BST中任意节点
+     * @param e 待删除元素
+     */
+    public void remove(E e){
+        root = remove(root, e);
+    }
+
+    /**
+     * 使用Hibbrad Deletion算法实现递归函数
+     * @param node 待删除节点
+     * @param e 待删除元素
+     * @return 返回新的BST
+     */
+    private Node remove(Node node, E e){
+        if (node == null) {
+            return null;
+        }
+        if(e.compareTo(node.e) < 0) {
+            //待删除结点在左子树上
+            node.left = remove(node.left, e);
+            return node;
+        } else if (e.compareTo(node.e) > 0) {
+            //待删除结点在右子树上
+            node.right = remove(node.right, e);
+            return node;
+        } else {
+            //e == node.e
+            //待删除结点的左孩子为空
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size --;
+                return rightNode;
+            }
+            //待删除结点的右孩子为空
+            if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size --;
+                return node;
+            }
+            //待删除节点左右均不为空
+            //找到比待删除节点大的最小节点，即待删除结点右子树的最小节点
+            //使用找到的节点代替待删除结点
+            //先找到待删除结点右子树的最小节点
+            Node successor = mininum(node.right);
+            //将代替节点与待删除结点的右子树相连接
+            successor.right = removeMin(node.right);
+//            size ++;
+            //将替代节点与原来节点的左子树连接
+            successor.left = node.left;
+            node.left = node.right = null;
+//            size --;
+            return successor;
+            //不需要维护size大小，在removeMin中维护了size大小
+        }
+
+
+    }
+
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
