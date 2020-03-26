@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class LinkedListMap<K, V> implements Map<K, V> {
     private class Node{
         public K key;
@@ -117,6 +119,25 @@ public class LinkedListMap<K, V> implements Map<K, V> {
         }
         //当prev.next为null时，返回null
         return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Pride and prejudice");
+        ArrayList<String> words = new ArrayList<>();
+        if (FileOperation.readFile("pride-and-prejudice.txt",words)) {
+            System.out.println("Total words: " + words.size());
+            LinkedListMap<String ,Integer> map = new LinkedListMap<>();
+            for (String word: words) {
+                if (map.contains(word)) {
+                    map.set(word, map.get(word) + 1);
+                } else {
+                    map.add(word, 1);
+                }
+                System.out.println("Total different words: " + map.getSize());
+                System.out.println("Frequency of Pride: " + map.get("pride"));
+                System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
+            }
+        }
     }
 
 }
