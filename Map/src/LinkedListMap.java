@@ -133,10 +133,11 @@ public class LinkedListMap<K, V> implements Map<K, V> {
                 } else {
                     map.add(word, 1);
                 }
-                System.out.println("Total different words: " + map.getSize());
-                System.out.println("Frequency of Pride: " + map.get("pride"));
-                System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
+
             }
+            System.out.println("Total different words: " + map.getSize());
+            System.out.println("Frequency of Pride: " + map.get("pride"));
+            System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
         }
     }
 
