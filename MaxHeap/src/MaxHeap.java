@@ -47,4 +47,39 @@ public class MaxHeap<E extends Comparable<E>> {
         }
     }
 
+    public E findMax(){
+        if (data.getSize() == 0) {
+            throw new IllegalArgumentException("Can not findMax when heap is empty");
+        }
+        return data.get(0);
+    }
+
+    public E extractMax(){
+        E ret = findMax();
+        //交换heap中最大的元素和最后一个元素
+        data.swap(0,  data.getSize() - 1);
+        //删除heap中最后一个元素
+        data.removeLast();
+        siftDown(0);
+        return ret;
+    }
+
+    private void siftDown(int k){
+        while (leftChild(k) < data.getSize()) {
+            int j = leftChild(k);
+            if (j + 1 < data.getSize() && data.get(j + 1).compareTo(data.get(j)) > 0) {
+                //j = rightChild(k)
+                //此时data[j]是节点k左后孩子中的最大值
+                j ++;
+            }
+            if (data.get(k).compareTo(data.get(j)) >= 0) {
+                break;
+            }
+            data.swap(k, j);
+            k = j;
+
+        }
+    }
+
+
 }
