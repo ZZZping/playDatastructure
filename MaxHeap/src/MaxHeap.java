@@ -8,6 +8,17 @@ public class MaxHeap<E extends Comparable<E>> {
         data = new Array<>();
     }
 
+    /**
+     * heapify函数，蒋数组组成最大堆
+     * @param arr
+     */
+    public MaxHeap(E[] arr){
+        data = new Array<>(arr);
+        for (int i = parent(arr.length - 1); i >= 0; i --) {
+            siftDown(i);
+        }
+    }
+
     public int size(){
         return data.getSize();
     }
@@ -80,6 +91,21 @@ public class MaxHeap<E extends Comparable<E>> {
 
         }
     }
+
+    /**
+     * 去除Heap中的最大元素，并且替换成元素e
+     * @param e 替换元素
+     * @return 返回堆中最大元素
+     */
+    public E replace(E e){
+        E ret = findMax();
+        data.set(0, e);
+        siftDown(0);
+        return ret;
+    }
+
+
+
 
 
 }
