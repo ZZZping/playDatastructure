@@ -25,15 +25,15 @@ public class PageRank {
 
         System.out.printf("\n Initial PageRank Values , 0th Step \n");
         for (k=1;k<=totalNodes;k++) {
-            System.out.printf(" Page Rank of "+k+" is :\t"+this.pagerank[k]+"\n");
+            System.out.printf(" Page Rank of "+ k +" is :\t" + this.pagerank[k] + "\n");
         }
 
         while(ITERATION_STEP<=2) {
             // Iterations
             // Store the PageRank for All Nodes in Temporary Array
             for(k=1;k<=totalNodes;k++) {
-                TempPageRank[k]=this.pagerank[k];
-                this.pagerank[k]=0;
+                TempPageRank[k] = this.pagerank[k];
+                this.pagerank[k] = 0;
             }
 
             for (InternalNodeNumber=1;InternalNodeNumber<=totalNodes;InternalNodeNumber++) {
@@ -53,9 +53,9 @@ public class PageRank {
                 }
             }
             System.out.printf("\n After "+ ITERATION_STEP +"th Step \n");
-            for(k=1;k<=totalNodes;k++)
-                System.out.printf(" Page Rank of "+ k +" is :\t" + this.pagerank[k] + "\n");
-
+            for(k=1;k<=totalNodes;k++) {
+                System.out.printf(" Page Rank of " + k + " is :\t" + this.pagerank[k] + "\n");
+            }
             ITERATION_STEP = ITERATION_STEP+1;
         }
 
@@ -70,5 +70,4 @@ public class PageRank {
             System.out.printf(" Page Rank of "+k+" is :\t"+this.pagerank[k]+"\n");
         }
     }
-
 }
