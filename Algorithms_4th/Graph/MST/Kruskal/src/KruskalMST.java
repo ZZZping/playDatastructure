@@ -1,4 +1,9 @@
+import com.sun.tools.javac.Main;
 import edu.princeton.cs.algs4.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class KruskalMST {
     private static final double FLOATING_POINT_EPSILON = 1E-12;
@@ -116,8 +121,11 @@ public class KruskalMST {
      *
      * @param args the command-line arguments
      */
-    public static void main(String[] args) {
-        In in = new In(args[0]);
+    public static void main(String[] args)  {
+//        FileInputStream is = new FileInputStream(new File("E:\\java\\playDatastructure\\Algorithms_4th\\Graph\\MST\\Kruskal\\src\\edge.txt"));
+//        System.setIn(is);
+//        Main.main(args);
+        In in = new In("edge.txt");
         EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         KruskalMST mst = new KruskalMST(G);
         for (Edge e : mst.edges()) {
