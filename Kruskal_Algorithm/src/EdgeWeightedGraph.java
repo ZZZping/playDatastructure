@@ -1,8 +1,4 @@
-import MST.Kurskal.Bag;
-import MST.Kurskal.Edge;
-
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Stack;
 
 import java.util.NoSuchElementException;
 
@@ -56,7 +52,7 @@ public class EdgeWeightedGraph {
             }
         }
         catch (NoSuchElementException e) {
-            throw new IllegalArgumentException("invalid input format in EdgeWeightedGraph constructor", e);
+            throw new IllegalArgumentException("invalid input format in MST.Kurskal.EdgeWeightedGraph constructor", e);
         }
     }
 
