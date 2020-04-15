@@ -1,7 +1,3 @@
-package MST.Kurskal;
-
-import edu.princeton.cs.algs4.StdIn;
-
 public class Edge implements Comparable<Edge>{
     private final int v;
     private final int w;
@@ -17,6 +13,10 @@ public class Edge implements Comparable<Edge>{
         this.v = v;
         this.w = w;
         this.weight = weight;
+    }
+
+    public double weight() {
+        return weight;
     }
 
     /**
