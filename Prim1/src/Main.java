@@ -1,8 +1,10 @@
+import edu.princeton.cs.algs4.In;
+
 public class Main {
-    public static void main(String[] args)  {
-        In in = new In("edge.txt");
+    public static void main(String[] args) {
+        In in = new In("tinyEWG.txt");
         EdgeWeightedGraph G = new EdgeWeightedGraph(in);
-        KruskalMST mst = new KruskalMST(G);
+        PrimMST mst = new PrimMST(G);
         for (Edge e : mst.edges()) {
             System.out.println(e);
         }
