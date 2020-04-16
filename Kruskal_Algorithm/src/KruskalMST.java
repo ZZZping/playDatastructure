@@ -10,7 +10,6 @@ public class KruskalMST {
             pq.insert(e);
         }
 
-        
         UF uf = new UF(G.V());
         while (!pq.isEmpty() && mst.size() < G.V() - 1) {
             Edge e = pq.delMin();
@@ -67,7 +66,9 @@ public class KruskalMST {
             uf = new UF(G.V());
             for (Edge f : mst) {
                 int x = f.either(), y = f.other(x);
-                if (f != e) uf.union(x, y);
+                if (f != e) {
+                    uf.union(x, y);
+                }
             }
 
             for (Edge f : G.edges()) {
