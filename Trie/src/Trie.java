@@ -51,4 +51,22 @@ public class Trie {
             size++;
         }
     }
+
+    /**
+     * 查询是否含有字符word
+     * @param word 带查询单词
+     * @return 返回是否存在
+     */
+    public boolean contains(String word) {
+        Node cur = root;
+        for (int i = 0; i < word.length(); i ++) {
+            char c = word.charAt(i);
+            if (cur.next.get(cur) == null) {
+                return false;
+            }
+            cur = cur.next.get(c);
+        }
+        return cur.isWord;
+    }
+
 }
