@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Pride and Prejudice");
         ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("Pride and Prejudice.txt",words)) {
+        if (FileOperation.readFile("Pride-and-Prejudice.txt",words)) {
             long startTime = System.nanoTime();
 
             BSTSet<String> set = new BSTSet<>();
