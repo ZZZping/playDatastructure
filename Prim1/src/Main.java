@@ -1,4 +1,3 @@
-import edu.princeton.cs.algs4.In;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,7 +7,7 @@ public class Main {
         PrimMST mst = new PrimMST(G);
         double endTime = System.nanoTime();
         double time = (endTime - startTime) / 1000000000.0;
-        System.out.println("time is:" + time + " s");
+        System.out.println("Prim time is:" + time + " s");
         for (Edge e : mst.edges()) {
             System.out.println(e);
         }
