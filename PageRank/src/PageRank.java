@@ -36,8 +36,8 @@ public class PageRank {
                 this.pagerank[k] = 0;
             }
 
-            for (InternalNodeNumber=1;InternalNodeNumber<=totalNodes;InternalNodeNumber++) {
-                for (ExternalNodeNumber=1;ExternalNodeNumber<=totalNodes;ExternalNodeNumber++) {
+            for (InternalNodeNumber = 1; InternalNodeNumber <= totalNodes; InternalNodeNumber ++) {
+                for (ExternalNodeNumber =1; ExternalNodeNumber <= totalNodes; ExternalNodeNumber ++) {
                     if (this.path[ExternalNodeNumber][InternalNodeNumber] == 1) {
                         k=1;
                         OutgoingLinks=0;  // Count the Number of Outgoing Links for each ExternalNodeNumber
