@@ -2,7 +2,11 @@ public class Main {
 
     public static void main(String[] args) {
         double startTime = System.nanoTime();
+<<<<<<< HEAD
         In in = new In("large.txt");
+=======
+        In in = new In("edge.txt");
+>>>>>>> 75c24794b58fb8df0e4ebd6feffcda94caa65dd9
         EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         KruskalMST kruskalMST = new KruskalMST(G);
         double endTime = System.nanoTime();

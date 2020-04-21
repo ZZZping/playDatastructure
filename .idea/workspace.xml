@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ChangeListManager">
     <list default="true" id="691e48cc-af92-48b5-bac7-bcf42d8887d7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,4 +64,10 @@
     </state>
     <state x="367" y="6" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1587406008621" />
   </component>
+=======
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+>>>>>>> 75c24794b58fb8df0e4ebd6feffcda94caa65dd9
 </project>
