@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/BANKSPrototype/Prototype/lib/mysql-connector-java-8.0.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BANKSPrototype/Prototype/lib/AbsoluteLayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BANKSPrototype/Prototype/lib/swing-layout-1.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BANKSPrototype/Prototype/lib/mysql-connector-java-5.1.5-bin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

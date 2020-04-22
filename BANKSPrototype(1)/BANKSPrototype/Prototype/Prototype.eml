@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="Sun JDK 1.6.0_13">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="mysql-connector-java-5.1.5-bin.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/Prototype/lib/mysql-connector-java-5.1.5-bin.jar!/"/>
+	</lib>
+	<lib name="AbsoluteLayout.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/Prototype/lib/AbsoluteLayout.jar!/"/>
+	</lib>
+	<lib name="swing-layout-1.0.3.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/Prototype/lib/swing-layout-1.0.3.jar!/"/>
+	</lib>
+</component>
