@@ -114,7 +114,6 @@ public class Mainwindow extends javax.swing.JFrame {
             np.setX(kk);
             np.setY(j);
             position.put(left + right, np);
-
         }
     }
 
@@ -771,7 +770,6 @@ public class Mainwindow extends javax.swing.JFrame {
             }
         }
         StringBuffer lb = new StringBuffer();
-        //lb.append(label.getText());
         System.gc();
         endTime = System.currentTimeMillis();
         Long time = endTime - startTime;
@@ -858,6 +856,7 @@ public class Mainwindow extends javax.swing.JFrame {
 
     public void BuildTreeByDB() throws SQLException {
 
+        //绘制初始树的边
         Graphics g = draw.getGraphics();
         g.setColor(new Color(255, 0, 0));
 
@@ -877,6 +876,7 @@ public class Mainwindow extends javax.swing.JFrame {
             g.fillOval(np.getX(), np.getY(), 10, 10);
             NodePosition npleft = position.get(cee.getSequence());
             NodePosition npright = position.get(cee.getSequenced());
+
             g.drawLine(np.getX() + 5, 55, npleft.getX() + 5, 105);
             g.drawLine(np.getX() + 5, 55, npright.getX() + 5, 105);
         }
@@ -884,8 +884,9 @@ public class Mainwindow extends javax.swing.JFrame {
             NodePosition np = position.get(paa.getSid() + paa.getUid());
             g.drawOval(np.getX(), np.getY(), 10, 10);
             g.fillOval(np.getX(), np.getY(), 10, 10);
-            NodePosition npleft = position.get(paa.getSid());
-            NodePosition npright = position.get(paa.getUid());
+            //绘制service user 以及用户调用服务的边
+            NodePosition npleft = position.get(paa.getUid());
+            NodePosition npright = position.get(paa.getSid());
             g.drawLine(np.getX() + 5, 155, npleft.getX() + 5, 105);
             g.drawLine(np.getX() + 5, 155, npright.getX() + 5, 205);
         }
@@ -949,9 +950,10 @@ public class Mainwindow extends javax.swing.JFrame {
             initMine();
             BuildTree bt = new BuildTree(ur.getText(),pw.getText());
             ar = bt.getUserList();
+            pa = bt.getServiceUserlist();
             pr = bt.getServiceList();
             ce = bt.getSequenceList();
-            pa = bt.getServiceUserlist();
+
             BuildGraphic();
             BuildPosition();
             BuildTreeByDB();

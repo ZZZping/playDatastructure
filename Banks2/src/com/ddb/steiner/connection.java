@@ -15,7 +15,7 @@ public class connection {
     public Connection getConnection(String ur,String pw)
     {
         String driverName = "com.mysql.cj.jdbc.Driver";
-        String dbURL = "jdbc:mysql://localhost:3306/dblp2?user="+ur+"&password="+pw+"&useSSL="+ false + "&serverTimezone="+ "UTC" ;
+        String dbURL = "jdbc:mysql://localhost:3306/dblp?user="+ur+"&password="+pw+"&useSSL="+ false + "&serverTimezone="+ "UTC" ;
         System.out.println(ur+pw);
         try{
             Class.forName(driverName);

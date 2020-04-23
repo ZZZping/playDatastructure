@@ -8,6 +8,7 @@ import com.ddb.model.Node;
 
 public class FindBase {
 
+    //¹Ø¼ü´Êkeyword
     ArrayList<Node> kw ;
     DijGraphic dij;
     HashMap<String,DijGraphic> dinfo ;
