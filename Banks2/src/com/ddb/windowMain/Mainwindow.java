@@ -60,6 +60,9 @@ public class Mainwindow extends javax.swing.JFrame {
         checkpanel.setEnabled(false);
     }
 
+    /**
+     * 绘制节点位置
+     */
     private void BuildPosition() {
         // TODO Auto-generated method stub
 
@@ -117,8 +120,7 @@ public class Mainwindow extends javax.swing.JFrame {
         }
     }
 
-    //GEN-BEGIN:initComponents
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    //绘制主面板
     private void initComponents() {
 
         draw = new java.awt.Panel();
@@ -141,7 +143,8 @@ public class Mainwindow extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(java.awt.Color.darkGray);
 
-        draw.setBackground(new java.awt.Color(0, 202, 207));
+        //draw.setBackground(new java.awt.Color(0, 202, 207));
+        draw.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout drawLayout = new javax.swing.GroupLayout(draw);
         draw.setLayout(drawLayout);
@@ -472,8 +475,7 @@ public class Mainwindow extends javax.swing.JFrame {
                                         .addContainerGap()));
 
         pack();
-    }// </editor-fold>
-    //GEN-END:initComponents
+    }
 
     private void urActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -492,7 +494,6 @@ public class Mainwindow extends javax.swing.JFrame {
         Graphics g = draw.getGraphics();
         int width = draw.getHeight();
         int height = draw.getWidth();
-        // System.out.println(width+":"+height);
         g.clearRect(0, 0, height, width);
     }
 
@@ -536,30 +537,24 @@ public class Mainwindow extends javax.swing.JFrame {
             int j = 0;
 
             for (int i = 0; i < graphicInfo.get(preNode).getAdj().size(); i++) {
-                String adj = graphicInfo.get(preNode).getAdj().get(i)
-                        .getNodename(); // 得到邻接点
-
+                String adj = graphicInfo.get(preNode).getAdj().get(i).getNodename(); // 得到邻接点
                 if (initNode.contains(adj)) { //当剩余节点集合中包含这个邻接点时候进行松弛
 
-                    int length = DijInfo.get(sr).getAllNode().get(preNode)
-                            .getDist()
-                            + graphicInfo.get(preNode).getAdj().get(i)
-                            .getDist();
+                    int length = DijInfo.get(sr).getAllNode().get(preNode).getDist() + graphicInfo.get(preNode).getAdj().get(i).getDist();
 
-                    if (length < DijInfo.get(sr).getAllNode().get(adj)
-                            .getDist()) // 进行边的松弛处理
-                    {
-                        DijInfo.get(sr).getAllNode().get(adj).setDist(length); //重新设置该点权值
-                        DijInfo.get(sr).getAllNode().get(adj).setPre(preNode); //保存该点的上一个节点  为后面的重组树而做准备
-                        if (length < minWeight) { // 保存松弛后最小权值边
+                    if (length < DijInfo.get(sr).getAllNode().get(adj).getDist()) {
+                        // 进行边的松弛处理
+                        DijInfo.get(sr).getAllNode().get(adj).setDist(length);      //重新设置该点权值
+                        DijInfo.get(sr).getAllNode().get(adj).setPre(preNode);      //保存该点的上一个节点  为后面的重组树而做准备
+                        if (length < minWeight) {                                   // 保存松弛后最小权值边
                             minWeight = length;
                             minadj = adj;
                         }
                     }
                 } else {
                     j++;
-                    if ((j == graphicInfo.get(preNode).getAdj().size())
-                            && initNode.size() == 0) { //所有邻接点都不在initNode集合中，遍历结束，跳出整个循环
+                    if ((j == graphicInfo.get(preNode).getAdj().size()) && initNode.size() == 0) {
+                        //所有邻接点都不在initNode集合中，遍历结束，跳出整个循环
                         return;
                     }
                     continue;
@@ -580,9 +575,9 @@ public class Mainwindow extends javax.swing.JFrame {
         }
     }
 
-    public void Dij() { // Dijskra 求关键词节点到其他所有节点的最短距离 kwNode allNode
+    public void Dij() {
+        // Dijkstra 求关键词节点到其他所有节点的最短距离 kwNode allNode
         // 考虑关键词节点可能重复
-
         // 开始初始化
         for (int i = 0; i < kwNode.size(); i++) {
             if (DijInfo.containsKey(kwNode.get(i))) {
@@ -596,11 +591,8 @@ public class Mainwindow extends javax.swing.JFrame {
                     nd.setDist(10000);
                     nd.setBelong(kwNode.get(i));
                     dgp.getAllNode().put(allNode.get(j), nd);
-
                 }
-
                 DijInfo.put(kwNode.get(i), dgp);
-                // System.out.print(DijInfo.get("t1").getAllNode().get("t5").getNodename());
             }
         }
         // 初始化完成
@@ -613,7 +605,7 @@ public class Mainwindow extends javax.swing.JFrame {
             }
         }
 
-        //调用Dijskra算法求每个关键词节点到图中所有节点的最短路径
+        //调用Dijkstra算法求每个关键词节点到图中所有节点的最短路径
         for (String name : newkwNode) {
             Dijskra(name);
             Node e = DijInfo.get(name).getAllNode().get(name);
@@ -624,7 +616,8 @@ public class Mainwindow extends javax.swing.JFrame {
             System.out.print(e.getNodename() + ":" + e.getDist() + "\n");
         }
 
-        /*为图中每个节点建立访问标志 初始状态0 表示 未访问
+        /*
+         *为图中每个节点建立访问标志 初始状态0 表示 未访问
          *这一步是为下面的查找根节点做准备
          */
         for (String aa : allNode) {
@@ -640,7 +633,6 @@ public class Mainwindow extends javax.swing.JFrame {
 
         //初始化每个节点对应的 所属关键词节点集合
         for (String an : allNode) {
-
             ArrayList<String> rootkw = new ArrayList<String>();
             root_kw.put(an, rootkw);
         }
@@ -658,7 +650,6 @@ public class Mainwindow extends javax.swing.JFrame {
         int change = allNode.size();
 
         while (minNode != null) {
-
             count++;
             System.out.print(minNode.getNodename() + " ");
             if (count % change == 0) {
@@ -672,9 +663,13 @@ public class Mainwindow extends javax.swing.JFrame {
                 flag.get(minNode.getNodename()).getFlag().remove(aa);
                 flag.get(minNode.getNodename()).getFlag().put(aa, 0); //设置flag表示该节点被访问
             }
-            if (!root_kw.get(minNode.getNodename()).contains(belongNode)) //如果未被该关键词节点访问过，就添加
+            if (!root_kw.get(minNode.getNodename()).contains(belongNode)) {
+                //如果未被该关键词节点访问过，就添加
                 root_kw.get(minNode.getNodename()).add(belongNode); //这样记录的只能是第一个根节点的相关访问节点。
+            }
 
+
+            //判断接待您是否被访问
             if (flag.get(minNode.getNodename()).getSum() == 0) { //如果该根节点被所有关键词访问  加入到根节点集合中
                 rootCount++;
                 root.add(minNode.getNodename());
@@ -697,6 +692,7 @@ public class Mainwindow extends javax.swing.JFrame {
             return; //没有满足要求的根节点 直接返回
         }
         String finalRoot = root.get(0);
+        //设置斯坦纳树根节点
         ArrayList<String> finalRootKw = root_kw.get(finalRoot);
         for (String ff : finalRootKw) {
             ArrayList<String> trace = new ArrayList<String>();
@@ -718,6 +714,7 @@ public class Mainwindow extends javax.swing.JFrame {
         for (String ff : finalRootKw) {
             ArrayList<String> gettrace = rootTrace.get(ff);
             System.out.print(finalRoot + ">>");
+            //输出斯坦纳树
             for (String dd : gettrace) {
                 steinerNode.add(dd);
                 steinerEdge.add(left + dd);
@@ -730,18 +727,18 @@ public class Mainwindow extends javax.swing.JFrame {
         }
 
         DrawSteiner(steinerNode, steinerEdge);
-
-        //System.out.println(DijInfo.size());
-
     }
 
-    private void DrawSteiner(ArrayList<String> steinerNode,
-                             ArrayList<String> steinerEdge) {
+    /**
+     * 绘制最小Steiner树
+     * @param steinerNode 节点
+     * @param steinerEdge 边
+     */
+    private void DrawSteiner(ArrayList<String> steinerNode, ArrayList<String> steinerEdge) {
         ArrayList<String> node = steinerNode;
         ArrayList<String> edge = steinerEdge;
         Graphics g = draw.getGraphics();
-        g.setColor(new Color(255, 0, 0));
-
+        g.setColor(new Color(0, 0, 0));
         for (String nn : node) {
             NodePosition np = position.get(nn);
             g.drawOval(np.getX(), np.getY(), 10, 10);
@@ -858,7 +855,8 @@ public class Mainwindow extends javax.swing.JFrame {
 
         //绘制初始树的边
         Graphics g = draw.getGraphics();
-        g.setColor(new Color(255, 0, 0));
+        //g.setColor(new Color(255, 0, 0));
+        g.setColor(new Color(0, 0, 0));
 
         for (Service prr : pr) {
             NodePosition np = position.get(prr.getSid());
@@ -892,13 +890,15 @@ public class Mainwindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * 构造数据图
+     */
     public void BuildGraphic() {
 
         for (Service prr : pr) {
             Graphic gp = new Graphic();
             gp.setName(prr.getSid());
             graphicInfo.put(prr.getSid(), gp);
-
             allNode.add(prr.getSid());
         }
 
@@ -944,7 +944,6 @@ public class Mainwindow extends javax.swing.JFrame {
     public void showActionPerformed(java.awt.event.ActionEvent evt)
     {
         // TODO add your handling code here:
-
         cleardraw();
         try{
             initMine();
@@ -958,11 +957,9 @@ public class Mainwindow extends javax.swing.JFrame {
             BuildPosition();
             BuildTreeByDB();
         }catch(Exception e){
-            //System.out.println(e);
             return ;
         }
         checkpanel.setEnabled(true);
-
     }
 
     /**

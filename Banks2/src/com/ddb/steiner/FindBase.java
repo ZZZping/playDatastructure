@@ -67,8 +67,6 @@ public class FindBase {
         Node temp = next;      //ΩªªªŒª÷√
         kw.set(0, kw.get(i-1));
         kw.set(i-1, temp);
-
-
     }
 
     public Node getMin(){

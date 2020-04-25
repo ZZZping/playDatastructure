@@ -21,8 +21,7 @@ public class BuildTree {
     ResultSet rt;
     String sql ;
 
-    public BuildTree(String ur,String pw)
-    {
+    public BuildTree(String ur,String pw) {
         userList = new ArrayList<User>();
         serviceList = new ArrayList<Service>();
         sequenceList = new ArrayList<sequence>();
@@ -33,8 +32,7 @@ public class BuildTree {
         setQuote();
     }
 
-    public void setQuote()
-    {
+    public void setQuote() {
         rt = null;
         sql = "SET sql_mode='ANSI_QUOTES';";
         if(con!=null)
@@ -44,8 +42,7 @@ public class BuildTree {
     }
 
 
-    public ArrayList<User> getUserList()
-    {
+    public ArrayList<User> getUserList() {
         rt = null;
         sql = "select * from user;";
 
@@ -68,8 +65,7 @@ public class BuildTree {
         return userList;
     }
 
-    public ArrayList<Service> getServiceList() throws SQLException
-    {
+    public ArrayList<Service> getServiceList() throws SQLException {
         rt = null;
         sql = "select * from service;";
         if(con==null)
@@ -87,8 +83,7 @@ public class BuildTree {
         return serviceList;
     }
 
-    public ArrayList<Serviceuser> getServiceUserlist() throws SQLException
-    {
+    public ArrayList<Serviceuser> getServiceUserlist() throws SQLException {
         rt = null;
         sql = "select * from \"service-user\"";
         if(con==null)
@@ -106,8 +101,7 @@ public class BuildTree {
         return serviceuserList;
     }
 
-    public ArrayList<sequence> getSequenceList() throws SQLException
-    {
+    public ArrayList<sequence> getSequenceList() throws SQLException {
         rt = null;
         sql = "select * from sequence;";
         if(con==null)

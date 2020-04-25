@@ -18,14 +18,11 @@ public class AccessFlag {
 
     public int getSum(){
         int sum = 0;
-
         Collection<Integer> values = flag.values();
-
         for(Iterator<Integer> iterator=values.iterator(); iterator.hasNext();){
             Integer it = iterator.next();
             sum = sum + it.intValue();
         }
-
         return sum;
     }
 }
