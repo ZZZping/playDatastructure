@@ -28,7 +28,11 @@ public class Main {
         int m = 10000;
         UnionFind1 unionFind1 = new UnionFind1(size);
         UnionFind2 unionFind2 = new UnionFind2(size);
+        UnionFind3 unionFind3 = new UnionFind3(size);
+        UnionFind4 unionFind4 = new UnionFind4(size);
         System.out.println("UF1 : " + testUF(unionFind1, m));
         System.out.println("UF2 : " + testUF(unionFind2, m));
+        System.out.println("UF3 : " + testUF(unionFind3, m));
+        System.out.println("UF4 : " + testUF(unionFind4, m));
     }
 }
