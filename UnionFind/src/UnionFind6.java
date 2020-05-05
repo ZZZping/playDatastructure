@@ -1,8 +1,8 @@
-public class  UnionFind5 implements UF {
+public class UnionFind6 implements UF {
     private int[] parent;
     private int[] rank;
 
-    public UnionFind5(int size) {
+    public UnionFind6(int size) {
         parent = new int[size];
         rank = new int[size];
         for (int i = 0; i < parent.length; i ++) {
@@ -20,10 +20,13 @@ public class  UnionFind5 implements UF {
         if (p < 0 && p >= parent.length) {
             throw new IllegalArgumentException("p is out of bound");
         }
-        if (p != parent[p]) {
-            parent[p] = find(parent[p]);
+        while (p != parent[p]) {
+            //路径压缩
+            //将节点p指向节点p的根节点的根节点
+            parent[p] = parent[parent[p]];
+            p = parent[p];
         }
-        return parent[p];
+        return p;
     }
 
     @Override
