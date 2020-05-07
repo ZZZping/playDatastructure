@@ -165,19 +165,30 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
 
         //获得平衡因子
         int balacneFctor = getBalanceFactor(node);
-        if (Math.abs(balacneFctor) > 1) {
-            System.out.println("unbalance : " + balacneFctor);
-        }
+//        if (Math.abs(balacneFctor) > 1) {
+//            System.out.println("unbalance : " + balacneFctor);
+//        }
 
         //平衡维护
-        //1.右旋转
+        //1.右旋转LL
         if (balacneFctor > 1 && getBalanceFactor(node.left) >= 0) {
             return rightRotate(node);
         }
-        //2.左旋转
+        //2.左旋转RR
         if (balacneFctor < -1 && getBalanceFactor(node.right) <= 0) {
             return leftRotate(node);
         }
+        //3.LR
+        if (balacneFctor > 1 && getBalanceFactor(node.right) <= 0) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+        //4.RL
+        if (balacneFctor < -1 && getBalanceFactor(node.left) >=0) {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
+
         return node;
     }
 
@@ -279,23 +290,23 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("Pride and prejudice");
-        ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("pride-and-prejudice.txt",words)) {
-            System.out.println("Total words: " + words.size());
-            AVLTree<String ,Integer> map = new AVLTree<>();
-            for (String word: words) {
-                if (map.contains(word)) {
-                    map.set(word, map.get(word) + 1);
-                } else {
-                    map.add(word, 1);
-                }
-
-            }
-            System.out.println("Total different words: " + map.getSize());
-            System.out.println("Frequency of Pride: " + map.get("pride"));
-            System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
-        }
-    }
+//    public static void main(String[] args) {
+//        System.out.println("Pride and prejudice");
+//        ArrayList<String> words = new ArrayList<>();
+//        if (FileOperation.readFile("pride-and-prejudice.txt",words)) {
+//            System.out.println("Total words: " + words.size());
+//            AVLTree<String ,Integer> map = new AVLTree<>();
+//            for (String word: words) {
+//                if (map.contains(word)) {
+//                    map.set(word, map.get(word) + 1);
+//                } else {
+//                    map.add(word, 1);
+//                }
+//
+//            }
+//            System.out.println("Total different words: " + map.getSize());
+//            System.out.println("Frequency of Pride: " + map.get("pride"));
+//            System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
+//        }
+//    }
 }
