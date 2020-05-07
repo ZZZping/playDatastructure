@@ -77,8 +77,8 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
         if (node == null) {
             return true;
         }
-        int balanceFctor = getBalanceFactor(node);
-        if (Math.abs(balanceFctor) > 1) {
+        int balanceFactor = getBalanceFactor(node);
+        if (Math.abs(balanceFactor) > 1) {
             return false;
         }
         return isBalanced(node.left) && isBalanced(node.right);
@@ -332,9 +332,11 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
             System.out.println("Total different words: " + map.getSize());
             System.out.println("Frequency of Pride: " + map.get("pride"));
             System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
+            System.out.println("isBST: " + map.isBST());
+            System.out.println("isBalance: " + map.isBalance());
             for (String word : words) {
                 map.remove(word);
-                if (map.isBST() || !map.isBalance()) {
+                if (!map.isBST() || !map.isBalance()) {
                     throw new RuntimeException("error");
                 }
             }
