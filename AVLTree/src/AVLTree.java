@@ -40,6 +40,51 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     /**
+     * 判断是否为BST
+     * @return 返回判断结果
+     */
+    public boolean isBST() {
+        //使用中序遍历遍历BST时，遍历结果时按顺序排列
+        ArrayList<K> keys = new ArrayList<>();
+        inOrder(root, keys);
+        for (int i = 1; i < keys.size(); i ++) {
+            if (keys.get(i - 1).compareTo(keys.get(i)) > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void inOrder(Node node, ArrayList<K> keys) {
+        if (node == null) {
+            return ;
+        }
+        inOrder(node.left, keys);
+        keys.add(node.key);
+        inOrder(node.right, keys);
+    }
+
+    public boolean isBalance() {
+        return isBalanced(root);
+    }
+
+    /**
+     * 判断以root为根节点的二叉树是否为平衡二叉树
+     * @param node 待判断节点
+     * @return 返回是否为平衡二叉树
+     */
+    private boolean isBalanced(Node node) {
+        if (node == null) {
+            return true;
+        }
+        int balanceFctor = getBalanceFactor(node);
+        if (Math.abs(balanceFctor) > 1) {
+            return false;
+        }
+        return isBalanced(node.left) && isBalanced(node.right);
+    }
+
+    /**
      * 获得节点node的高度
      * @param node 节点
      * @return 返回节点高度
