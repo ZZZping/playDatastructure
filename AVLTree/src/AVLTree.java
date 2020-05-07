@@ -238,17 +238,6 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
         return mininum(node.left);
     }
 
-    private Node removeMin(Node node){
-        if (node.left == null) {
-            Node rightNode = node.right;
-            node.right = null;
-            size --;
-            return rightNode;
-        }
-        node.left = removeMin(node.left);
-        return node;
-    }
-
     @Override
     public V remove(K key){
         Node node = getNode(root, key);
@@ -273,27 +262,30 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
             node.right = remove(node.right, key);
             retNode = node;
         } else {
+            //下面三种情况是互斥的
             if (node.left == null) {
                 Node rightNode = node.right;
                 node.right = null;
                 size--;
                 retNode = rightNode;
-            }
-            if (node.right == null) {
+            } else if (node.right == null) {
                 Node leftNode = node.left;
                 node.left = null;
                 size--;
                 retNode = node;
-            }
+            } else {
+            //successor是node右子树中的最小值
             Node successor = mininum(node.right);
-            successor.right = removeMin(node.right);
+            successor.right = remove(node.right, successor.key);
             successor.left = node.left;
-
             node.left = node.right = null;
-
             retNode = successor;
+            }
         }
-
+        //当待删除节点为空时，直接返回，无需维护树的平衡性
+        if (retNode == null) {
+            return null;
+        }
         //计算高度
         retNode.height = 1 + Math.max(getHeight(retNode.left), getHeight(retNode.right));
 
@@ -336,11 +328,16 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
                 } else {
                     map.add(word, 1);
                 }
-
             }
             System.out.println("Total different words: " + map.getSize());
             System.out.println("Frequency of Pride: " + map.get("pride"));
             System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
+            for (String word : words) {
+                map.remove(word);
+                if (map.isBST() || !map.isBalance()) {
+                    throw new RuntimeException("error");
+                }
+            }
         }
     }
 }
