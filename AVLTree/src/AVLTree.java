@@ -108,6 +108,41 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
         return getHeight(node.left) - getHeight(node.right);
     }
 
+    /**
+     * 右旋转操作
+     * @param y 不满足平衡二叉树的节点
+     * @return 返回旋转后的根节点
+     */
+    private Node rightRotate(Node y) {
+        Node x = y.left;
+        Node T3 = x.right;
+        //右旋转
+        x.right = y;
+        y.left = T3;
+        //更新height
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+
+        return x;
+    }
+
+    /**
+     * 左旋转
+     * @param y 不平衡节点
+     * @return 返回左旋转后的根节点
+     */
+    private Node leftRotate(Node y) {
+        Node x = y.right;
+        Node T3 = x.left;
+        x.left = y;
+        y.right = T3;
+
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+
+        return x;
+    }
+
     @Override
     public void add(K key, V value){
         root = add(root, key, value);
@@ -132,6 +167,16 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
         int balacneFctor = getBalanceFactor(node);
         if (Math.abs(balacneFctor) > 1) {
             System.out.println("unbalance : " + balacneFctor);
+        }
+
+        //平衡维护
+        //1.右旋转
+        if (balacneFctor > 1 && getBalanceFactor(node.left) >= 0) {
+            return rightRotate(node);
+        }
+        //2.左旋转
+        if (balacneFctor < -1 && getBalanceFactor(node.right) <= 0) {
+            return leftRotate(node);
         }
         return node;
     }
@@ -253,5 +298,4 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
             System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
         }
     }
-
 }
