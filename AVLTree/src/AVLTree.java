@@ -263,50 +263,84 @@ public class AVLTree<K extends Comparable<K>, V> implements Map<K, V> {
         if (node == null) {
             return null;
         }
+        //使用retNode保存将要返回的节点
+        //使用retNode可以有机会对retNode进行维护
+        Node retNode;
         if (key.compareTo(node.key) < 0) {
             node.left = remove(node.left, key);
-            return node;
+            retNode = node;
         } else if (key.compareTo(node.key) > 0) {
             node.right = remove(node.right, key);
-            return node;
+            retNode = node;
         } else {
             if (node.left == null) {
                 Node rightNode = node.right;
                 node.right = null;
                 size--;
-                return rightNode;
+                retNode = rightNode;
             }
             if (node.right == null) {
                 Node leftNode = node.left;
                 node.left = null;
                 size--;
-                return node;
+                retNode = node;
             }
             Node successor = mininum(node.right);
             successor.right = removeMin(node.right);
             successor.left = node.left;
+
             node.left = node.right = null;
-            return successor;
+
+            retNode = successor;
         }
+
+        //计算高度
+        retNode.height = 1 + Math.max(getHeight(retNode.left), getHeight(retNode.right));
+
+        //获得平衡因子
+        int balacneFctor = getBalanceFactor(retNode);
+
+        //平衡维护
+        //1.右旋转LL
+        if (balacneFctor > 1 && getBalanceFactor(retNode.left) >= 0) {
+            return rightRotate(retNode);
+        }
+        //2.左旋转RR
+        if (balacneFctor < -1 && getBalanceFactor(retNode.right) <= 0) {
+            return leftRotate(retNode);
+        }
+        //3.LR
+        if (balacneFctor > 1 && getBalanceFactor(retNode.right) < 0) {
+            retNode.left = leftRotate(retNode.left);
+            return rightRotate(retNode);
+        }
+        //4.RL
+        if (balacneFctor < -1 && getBalanceFactor(retNode.left) > 0) {
+            retNode.right = rightRotate(retNode.right);
+            return leftRotate(retNode);
+        }
+
+        return retNode;
+
     }
 
-//    public static void main(String[] args) {
-//        System.out.println("Pride and prejudice");
-//        ArrayList<String> words = new ArrayList<>();
-//        if (FileOperation.readFile("pride-and-prejudice.txt",words)) {
-//            System.out.println("Total words: " + words.size());
-//            AVLTree<String ,Integer> map = new AVLTree<>();
-//            for (String word: words) {
-//                if (map.contains(word)) {
-//                    map.set(word, map.get(word) + 1);
-//                } else {
-//                    map.add(word, 1);
-//                }
-//
-//            }
-//            System.out.println("Total different words: " + map.getSize());
-//            System.out.println("Frequency of Pride: " + map.get("pride"));
-//            System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
-//        }
-//    }
+    public static void main(String[] args) {
+        System.out.println("Pride and prejudice");
+        ArrayList<String> words = new ArrayList<>();
+        if (FileOperation.readFile("pride-and-prejudice.txt",words)) {
+            System.out.println("Total words: " + words.size());
+            AVLTree<String ,Integer> map = new AVLTree<>();
+            for (String word: words) {
+                if (map.contains(word)) {
+                    map.set(word, map.get(word) + 1);
+                } else {
+                    map.add(word, 1);
+                }
+
+            }
+            System.out.println("Total different words: " + map.getSize());
+            System.out.println("Frequency of Pride: " + map.get("pride"));
+            System.out.println("Frequency of Prejudice: " + map.get("prejudice"));
+        }
+    }
 }
