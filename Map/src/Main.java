@@ -25,7 +25,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-	// write your code here
         String filename = "pride-and-prejudice.txt";
         BSTMap<String, Integer> bstMap = new BSTMap<>();
         double time1 = testMap(bstMap, filename);
@@ -33,5 +32,8 @@ public class Main {
         LinkedListMap<String, Integer> linkedListMap = new LinkedListMap<>();
         double time2 = testMap(linkedListMap, filename);
         System.out.println("LinkedList Map: " +  time2 + " s");
+        AVLMap<String, Integer> avlMap = new AVLMap<>();
+        double time3 = testMap(avlMap, filename);
+        System.out.println("AVLMap: " + time3 + " s");
     }
 }

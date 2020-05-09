@@ -18,7 +18,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-	// write your code here
         String filename = "pride-and-prejudice.txt";
         BSTSet<String> bstSet = new BSTSet<>();
         double time1 = testSet(bstSet, filename);
@@ -27,6 +26,8 @@ public class Main {
         LinkedListSet<String> linkedListSet = new LinkedListSet<>();
         double time2 = testSet(linkedListSet, filename);
         System.out.println("LinkedList Set " + time2 + " s");
-
+        AVLSet<String> avlSet = new AVLSet<>();
+        double time3 = testSet(avlSet, filename);
+        System.out.println("AVLSet " + time3 + " s");
     }
 }
