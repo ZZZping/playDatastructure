@@ -40,7 +40,8 @@ public class FindBase {
 
         int i = 0;
 
-        if( n.getNext() == null){  //如果最小节点的下一个节点为null，直接删掉该节点 返回
+        if( n.getNext() == null){
+            //如果最小节点的下一个节点为null，直接删掉该节点 返回
             kw.remove(0);
             return ;
         }else{

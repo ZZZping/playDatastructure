@@ -191,7 +191,6 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
                 } else {
                     rbtree.add(word, 1);
                 }
-
             }
             System.out.println("Total different words: " + rbtree.getSize());
             System.out.println("Frequency of Pride: " + rbtree.get("pride"));
