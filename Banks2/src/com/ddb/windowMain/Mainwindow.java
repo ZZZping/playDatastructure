@@ -143,7 +143,6 @@ public class Mainwindow extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(java.awt.Color.darkGray);
 
-        //draw.setBackground(new java.awt.Color(0, 202, 207));
         draw.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout drawLayout = new javax.swing.GroupLayout(draw);
@@ -855,7 +854,6 @@ public class Mainwindow extends javax.swing.JFrame {
 
         //»æÖÆ³õÊ¼Ê÷µÄ±ß
         Graphics g = draw.getGraphics();
-        //g.setColor(new Color(255, 0, 0));
         g.setColor(new Color(0, 0, 0));
 
         for (Service prr : pr) {
