@@ -33,6 +33,31 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
         size = 0;
     }
 
+    /**
+     * 判断结点node的颜色
+     * @param node 待判断结点
+     * @return 返回节点颜色
+     */
+    private boolean isRed(Node node) {
+        if (node == null) {
+            return BLACK;
+        }
+        return node.color;
+    }
+
+    private Node leftRotate(Node node) {
+        Node x = node.right;
+        //左旋转
+        node.right = x.left;
+        x.left = node;
+
+        //维持节点颜色
+        x.color = node.color;
+        node.color = RED;
+
+        return x;
+    }
+
     @Override
     public int getSize(){
         return size;
@@ -46,6 +71,8 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
     @Override
     public void add(K key, V value){
         root = add(root, key, value);
+        //向红黑树中添加元素，并将根节点设为红色
+        root.color = BLACK;
     }
 
     private Node add(Node node, K key, V value) {
@@ -169,11 +196,9 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
             Node successor = mininum(node.right);
             //将代替节点与待删除结点的右子树相连接
             successor.right = removeMin(node.right);
-//            size ++;
             //将替代节点与原来节点的左子树连接
             successor.left = node.left;
             node.left = node.right = null;
-//            size --;
             return successor;
             //不需要维护size大小，在removeMin中维护了size大小
         }
