@@ -1,3 +1,4 @@
+import java.nio.file.NotDirectoryException;
 import java.util.ArrayList;
 
 public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
@@ -56,6 +57,32 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
         node.color = RED;
 
         return x;
+    }
+
+    /**
+     * 颜色翻转
+     * @param node 待翻转结点
+     */
+    private void flipColors(Node node) {
+        //1.将根结点设为红色
+        node.color = RED;
+        //2.将根结点的左右子结点设为黑色
+        node.left.color = BLACK;
+        node.right.color = BLACK;
+    }
+
+    private Node rightRotate(Node node) {
+        Node x = node.left;
+        //右旋转
+        //将node与结点x脱离关系
+        node.left = x.right;
+        x.right = node;
+        //维护结点颜色
+        x.color = node.color;
+        node.color = RED;
+
+        return x;
+
     }
 
     @Override
