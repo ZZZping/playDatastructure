@@ -47,9 +47,6 @@ public class connection {
 
                 System.out.println(e);
             }
-
-
-
         }
 
         return null;

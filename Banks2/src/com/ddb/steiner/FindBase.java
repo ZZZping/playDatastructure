@@ -11,7 +11,7 @@ public class FindBase {
     //¹Ø¼ü´Êkeyword
     ArrayList<Node> kw ;
     DijGraphic dij;
-    HashMap<String,DijGraphic> dinfo ;
+    HashMap<String,DijGraphic> dinfo;
 
     public FindBase(){
         this.kw = new ArrayList<Node>();
