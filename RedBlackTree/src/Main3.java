@@ -1,14 +1,12 @@
 import java.util.ArrayList;
-import java.util.Random;
 
-public class Main2 {
+public class Main3 {
     public static void main(String[] args) {
-        int n = 20000000;
-        Random random = new Random();
+        int n = 20000;
         ArrayList<Integer> testData = new ArrayList<>();
-        //添加的数据是无序数据
+        //添加的数据有顺序
         for (int i = 0; i < n; i ++) {
-            testData.add(random.nextInt(Integer.MAX_VALUE));
+            testData.add(i);
         }
         long startTime = System.nanoTime();
         BSTMap<Integer, Integer> bstMap = new BSTMap<>();
