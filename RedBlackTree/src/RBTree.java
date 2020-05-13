@@ -105,6 +105,7 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
     private Node add(Node node, K key, V value) {
         if (node == null) {
             size ++;
+            //如果刚开始红黑树中没有元素时，添加一个红色结点
             return new Node(key, value);
         }
         if (key.compareTo(node.key) < 0) {
@@ -116,6 +117,19 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
         } else {
             node.value = value;
         }
+
+        //维护红黑树性质
+        //三个条件不是互斥条件
+        if (isRed(node.right) && !isRed(node.left)) {
+            node = leftRotate(node);
+        }
+        if (isRed(node.left) && isRed(node.left.left)) {
+            node = rightRotate(node);
+        }
+        if (isRed(node.left) && isRed(node.right)) {
+            flipColors(node);
+        }
+
         return node;
     }
 
