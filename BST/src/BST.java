@@ -1,4 +1,3 @@
-import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -209,17 +208,22 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * 层序遍历
+     * 层序遍历，BFS宽度优先遍历
      */
     public void levelOrder(){
+        //使用队列保存数据，先进先出
+        //使用一个链表来表示队列
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
+            //cur == root
             Node cur = queue.remove();
             System.out.println(cur.e);
+            //将左节点入队列
             if (cur.left != null) {
                 queue.add(cur.left);
             }
+            //将右结点入队列
             if (cur.right != null) {
                 queue.add(cur.right);
             }
