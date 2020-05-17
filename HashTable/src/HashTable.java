@@ -53,8 +53,8 @@ public class HashTable<K, V> {
 
     public void set(K key, V value) {
         TreeMap<K, V> map = hashtable[hash(key)];
-        if (map.containsKey(key)) {
-            throw new IllegalArgumentException(key + "does not exist");
+        if (!map.containsKey(key)) {
+            throw new IllegalArgumentException(key + " does not exist");
         }
         map.put(key, value);
     }
