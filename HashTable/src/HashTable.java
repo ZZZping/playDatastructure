@@ -3,6 +3,9 @@ import java.util.TreeMap;
 
 public class HashTable<K, V> {
 
+//    private final int[] capacity
+//            = {};
+
     private static final int upperTol = 10;
     private static final int lowerTol = 2;
     private static final int initCapacity = 7;
