@@ -17,7 +17,7 @@ public class Main {
 //        selectionSort.sort(nums);
 //        System.out.println("==========");
 //        insertSort.sort(nums);
-        insertSort.insertSort(nums);
+        insertSort.insertSortDesc(nums);
 
     }
 }

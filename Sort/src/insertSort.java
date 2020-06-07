@@ -30,5 +30,19 @@ public class insertSort {
         show.show(A);
     }
 
+    public void insertSortDesc(Comparable[] A) {
+        show show = new show();
+        for (int i = 0; i < A.length; i ++) {
+            Comparable key = A[i];
+            int j = i - 1;
+            while (j >= 0 && A[j].compareTo(key) < 0) {
+                A[j + 1] = A[j];
+                j --;
+            }
+            A[j + 1] = key;
+        }
+        show.show(A);
+    }
+
 
 }
