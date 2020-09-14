@@ -18,7 +18,7 @@ public class insertSort {
 
     public void insertSort(Comparable[] A) {
         for (int i = 1; i < A.length; i ++) {
-            Comparable key = A[i];
+            var key = A[i];
             int j = i - 1;
             while (j >= 0 && A[j].compareTo(key) > 0) {
                 A[j + 1] = A[j];
@@ -27,13 +27,13 @@ public class insertSort {
             A[j + 1] = key;
         }
         show show = new show();
-        show.show(A);
+        com.model.show.show(A);
     }
 
     public void insertSortDesc(Comparable[] A) {
         show show = new show();
         for (int i = 0; i < A.length; i ++) {
-            Comparable key = A[i];
+            var key = A[i];
             int j = i - 1;
             while (j >= 0 && A[j].compareTo(key) < 0) {
                 A[j + 1] = A[j];
